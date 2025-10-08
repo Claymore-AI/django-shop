@@ -49,7 +49,7 @@ git clone <repository-url>
 cd DjangoProject
 ```
 
-2. **Створення файлу .env** (вже є в проєкті)
+2. **Створення файлу .env**
 ```env
 DEBUG=1
 SECRET_KEY=supersecretkey123
@@ -64,7 +64,11 @@ POSTGRES_PORT=5432
 
 3. **Запуск контейнерів**
 ```bash
-docker-compose up --build
+docker-compose build
+```
+- І запуск докера
+```bash
+docker-compose up
 ```
 
 4. **Доступ до додатку**
