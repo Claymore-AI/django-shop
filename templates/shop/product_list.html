@@ -1,0 +1,74 @@
+{% extends "shop/base.html" %}
+{% block title %}Каталог товарів{% endblock %}
+
+{% block content %}
+<h1>Каталог товарів</h1>
+
+<form method="get" class="mb-3">
+    <select name="category" class="form-select" onchange="this.form.submit()">
+        <option value="">Усі категорії</option>
+        {% for category in categories %}
+            <option value="{{ category.id }}" {% if category.id|stringformat:"s" == selected_category %}selected{% endif %}>
+                {{ category.name }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+
+<div class="row">
+    {% for product in products %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                    <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <span class="text-white">Без фото</span>
+                    </div>
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.price }} грн</p>
+                    <div class="mt-auto d-flex justify-content-between">
+                        <a href="{% url 'shop:product_detail' product.pk %}" class="btn btn-primary">Детальніше</a>
+
+                        <!-- Кнопка Додати в кошик -->
+                        <form method="post" action="{% url 'shop:add_to_cart' product.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success">Додати в кошик</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="col-12">
+            <p class="text-center">Товарів не знайдено.</p>
+        </div>
+    {% endfor %}
+</div>
+
+{% if page_obj.paginator.num_pages > 1 %}
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}">Назад</a>
+            </li>
+        {% endif %}
+
+        {% for page in page_obj.paginator.page_range %}
+            <li class="page-item {% if page_obj.number == page %}active{% endif %}">
+                <a class="page-link" href="?page={{ page }}{% if selected_category %}&category={{ selected_category }}{% endif %}">{{ page }}</a>
+            </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}">Вперед</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}

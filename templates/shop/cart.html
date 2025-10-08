@@ -1,0 +1,55 @@
+{% extends "shop/base.html" %}
+{% block title %}Ваш кошик{% endblock %}
+
+{% block content %}
+<h2>Ваш кошик</h2>
+
+{% if items %}
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>Зображення</th>
+            <th>Товар</th>
+            <th>Ціна</th>
+            <th>Кількість</th>
+            <th>Разом</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td>
+                {% if item.product.image %}
+                    <img src="{{ item.product.image.url }}" width="80" alt="{{ item.product.name }}">
+                {% endif %}
+            </td>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.product.price }} грн</td>
+            <td>
+                <form action="{% url 'shop:update_cart_item' item.id %}" method="post" class="d-flex">
+                    {% csrf_token %}
+                    <input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="form-control me-2" style="width: 80px;">
+                    <button type="submit" class="btn btn-sm btn-outline-success">Оновити</button>
+                </form>
+            </td>
+            <td>{{ item.total_price }} грн</td>
+            <td>
+                <form action="{% url 'shop:remove_from_cart' item.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-outline-danger">Видалити</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="text-end">
+    <h4>Загальна сума: <strong>{{ total }} грн</strong></h4>
+</div>
+
+{% else %}
+<p>Ваш кошик порожній.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,131 @@
+[
+  {
+    "model": "shop.category",
+    "pk": 1,
+    "fields": {"name": "Electronics"}
+  },
+  {
+    "model": "shop.category",
+    "pk": 2,
+    "fields": {"name": "Books"}
+  },
+  {
+    "model": "shop.category",
+    "pk": 3,
+    "fields": {"name": "Clothing"}
+  },
+  {
+    "model": "shop.category",
+    "pk": 4,
+    "fields": {"name": "Home & Kitchen"}
+  },
+
+  { "model": "shop.product", "pk": 1,
+    "fields": {
+      "category": 1,
+      "name": "Smartphone",
+      "description": "Powerful Android phone with great camera",
+      "image": "products/phone.jpg",
+      "price": "799.99"
+    }
+  },
+  { "model": "shop.product", "pk": 2,
+    "fields": {
+      "category": 1,
+      "name": "Laptop",
+      "description": "Lightweight laptop for work and study",
+      "image": "products/laptop.jpg",
+      "price": "1199.00"
+    }
+  },
+  { "model": "shop.product", "pk": 3,
+    "fields": {
+      "category": 1,
+      "name": "Headphones",
+      "description": "Noise-cancelling headphones",
+      "image": "products/headphones.jpg",
+      "price": "199.99"
+    }
+  },
+  { "model": "shop.product", "pk": 4,
+    "fields": {
+      "category": 2,
+      "name": "Python for Beginners",
+      "description": "Book for learning Python step by step",
+      "image": "products/python_book.jpg",
+      "price": "25.50"
+    }
+  },
+  { "model": "shop.product", "pk": 5,
+    "fields": {
+      "category": 2,
+      "name": "Django Mastery",
+      "description": "Deep dive into Django framework",
+      "image": "products/django_book.jpg",
+      "price": "32.00"
+    }
+  },
+  { "model": "shop.product", "pk": 6,
+    "fields": {
+      "category": 3,
+      "name": "T-Shirt",
+      "description": "100% cotton, stylish and comfy",
+      "image": "products/tshirt.jpg",
+      "price": "14.99"
+    }
+  },
+  { "model": "shop.product", "pk": 7,
+    "fields": {
+      "category": 3,
+      "name": "Jeans",
+      "description": "Classic denim jeans",
+      "image": "products/jeans.jpg",
+      "price": "49.90"
+    }
+  },
+  { "model": "shop.product", "pk": 8,
+    "fields": {
+      "category": 4,
+      "name": "Coffee Maker",
+      "description": "Automatic coffee maker with timer",
+      "image": "products/coffee_maker.jpg",
+      "price": "89.00"
+    }
+  },
+  { "model": "shop.product", "pk": 9,
+    "fields": {
+      "category": 4,
+      "name": "Blender",
+      "description": "High-speed blender for smoothies",
+      "image": "products/blender.jpg",
+      "price": "59.50"
+    }
+  },
+  { "model": "shop.product", "pk": 10,
+    "fields": {
+      "category": 4,
+      "name": "Toaster",
+      "description": "2-slice stainless steel toaster",
+      "image": "products/toaster.jpg",
+      "price": "29.99"
+    }
+  },
+  { "model": "shop.product", "pk": 11,
+    "fields": {
+      "category": 1,
+      "name": "Smartwatch",
+      "description": "Tracks fitness and notifications",
+      "image": "products/smartwatch.jpg",
+      "price": "249.99"
+    }
+  },
+  { "model": "shop.product", "pk": 12,
+    "fields": {
+      "category": 3,
+      "name": "Jacket",
+      "description": "Warm winter jacket",
+      "image": "products/jacket.jpg",
+      "price": "99.00"
+    }
+  }
+]
